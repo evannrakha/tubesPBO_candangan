@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrasi Pasien</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link ke CSS jika diperlukan -->
+    <style>
+        /* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .register-container {
+            width: 300px;
+            margin: 100px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Registrasi Pasien</h2>
+        <form action="/auth/registerPasien" method="POST" th:object="${pasien}">
+            <div class="form-group">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" th:field="*{nama}" required="required" placeholder="Masukkan nama" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" th:field="*{password}" required="required" placeholder="Masukkan password" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="jenisKelamin">Jenis Kelamin:</label>
+                <select id="jenisKelamin" name="gender" th:field="*{gender}" required="required" class="input-field">
+                    <option value="">Pilih Jenis Kelamin</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="umur">Umur:</label>
+                <input type="number" id="umur" name="umur" th:field="*{umur}" required="required" placeholder="Masukkan umur" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn-submit">Daftar</button>
+            </div>
+
+            <!-- Display error message if exists -->
+            <div th:if="${error}" class="error-message">
+                <p th:text="${error}"></p>
+            </div>
+
+        </form>
+        <p class="login-link">Sudah punya akun? <a href="/auth/loginPasien">Login di sini</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+        .header {
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .header .nav {
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            gap: 20px;
+        }
+        .header .nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        .header .nav .logout {
+            background-color: black;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px 0;
+            background: none;
+            height: auto;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://storage.googleapis.com/a1aa/image/6MBL2sfIBQyIOym5ayZvycXOtmNuOA5Xr46du3z9uHHjOD9JA.jpg') no-repeat center center;
+            background-size: cover;
+            filter: blur(4px);
+            z-index: -1;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        .card h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .card p {
+            color: gray;
+            font-size: 14px;
+        }
+        .card button {
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                height: auto;
+                padding: 20px;
+            }
+            .card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Dashboard Admin</h1>
+        <div class="nav">
+            <a href="#">Petugas Administrasi</a>
+            <!-- Logout link with Thymeleaf -->
+            <a th:href="@{/admin/logout}" class="logout">Logout</a>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Paket MCU card -->
+        <div class="card">
+            <h2>Paket MCU</h2>
+            <p>Kontrol Paket MCU (CRUD)</p>
+            <a th:href="@{/admin/paket}" class="button">
+                <button>Kontrol Paket MCU</button>
+            </a>
+        </div>
+        <!-- Laporan MCU card -->
+        <div class="card">
+            <h2>Laporan MCU</h2>
+            <p>Menampilkan Laporan MCU Periode Tertentu</p>
+            <a th:href="@{/admin/laporan}" class="button">
+                <button>Laporan MCU</button>
+            </a>
+        </div>
+        <!-- Pasien MCU card berdasarkan Nama -->
+        <div class="card">
+            <h2>Pasien MCU</h2>
+            <p>Pencarian Daftar Pasien Tertentu Berdasarkan Nama</p>
+            <a th:href="@{/admin/cari/namaPasien}" class="button">
+                <button>Nama Pasien MCU</button>
+            </a>
+        </div>
+        <!-- Pasien MCU card berdasarkan Periode -->
+        <div class="card">
+            <h2>Pasien MCU</h2>
+            <p>Pencarian Daftar Pasien Tertentu Berdasarkan Periode</p>
+            <a th:href="@{/admin/cari/periodePasien}" class="button">
+                <button>Periode Pasien MCU</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

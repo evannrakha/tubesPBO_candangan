@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Daftar Paket MCU</title>
+    <link rel="stylesheet" href="/css/style.css" /> <!-- Sesuaikan dengan file CSS Anda -->
+</head>
+<body>
+    <header>
+        <h1>Daftar Paket MCU</h1>
+        <nav>
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/paket/add">Tambah Paket Baru</a>
+            <a href="/admin/logout">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>List Paket MCU</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Paket</th>
+                    <th>Harga</th>
+                    <th>Deskripsi</th>
+                    <th>Jenis Pemeriksaan</th> <!-- Kolom baru -->
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="paket, iterStat : ${listPaket}">
+                    <td th:text="${iterStat.index + 1}"></td>
+                    <td th:text="${paket.namaPaket}"></td>
+                    <td th:text="${paket.hargaPaket}"></td>
+                    <td th:text="${paket.deskripsi}"></td>
+                    <td th:text="${paket.jenis_pemeriksaan}"></td> <!-- Kolom baru -->
+                    <td>
+                        <a th:href="@{/admin/paket/edit/{id}(id=${paket.id_paket})}">Edit</a> |
+                        <a th:href="@{/admin/paket/delete/{id}(id=${paket.id_paket})}" onclick="return confirm('Yakin ingin menghapus paket ini?');">Hapus</a>
+                    </td>
+                </tr>
+                <tr th:if="${listPaket.empty}">
+                    <td colspan="6">Tidak ada paket MCU yang tersedia.</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 MCU Admin Panel</p>
+    </footer>
+</body>
+</html>

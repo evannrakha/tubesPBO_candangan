@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan MCU</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Include your CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Laporan MCU</h1>
+    </header>
+
+    <main>
+        <!-- Filter Form -->
+        <section>
+            <h2>Filter Laporan</h2>
+            <form method="GET" action="/admin/laporan">
+                <label for="startDate">Tanggal Mulai:</label>
+                <input type="date" id="startDate" name="StartDate" value="" required>
+
+                <label for="endDate">Tanggal Akhir:</label>
+                <input type="date" id="endDate" name="EndDate" value="" required>
+
+                <label for="paket">Paket:</label>
+                <input type="text" id="paket" name="Paket" placeholder="Nama Paket MCU">
+
+                <button type="submit">Tampilkan</button>
+            </form>
+        </section>
+
+        <!-- Laporan Table -->
+        <section>
+            <h2>Daftar Laporan</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Tanggal Daftar</th>
+                        <th>Nama Paket</th>
+                        <th>Harga Paket</th>
+                        <th>Nama Pasien</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="laporan, iterStat : ${listLaporan}">
+                        <td th:text="${iterStat.index + 1}"></td>
+                        <td th:text="${laporan.tanggalDaftar}"></td>
+                        <td th:text="${laporan.paket.namaPaket}"></td>
+                        <td th:text="${laporan.paket.hargaPaket}"></td>
+                        <td th:text="${laporan.pasien.nama}"></td>
+                    </tr>
+                    <tr th:if="${listLaporan.empty}">
+                        <td colspan="5">Tidak ada laporan ditemukan.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <a href="/admin/laporan/pendapatan">
+                <button type="button">Lihat Pendapatan </button>
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Medical Check-Up System</p>
+    </footer>
+</body>
+</html>

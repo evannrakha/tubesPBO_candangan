@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Pendapatan</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Laporan Pendapatan</h1>
+    </header>
+    <main>
+        <section>
+            <form method="get" action="/admin/laporan/pendapatan">
+                <label for="startDate">Tanggal Mulai:</label>
+                <input type="date" id="startDate" name="StartDate">
+
+                <label for="endDate">Tanggal Selesai:</label>
+                <input type="date" id="endDate" name="EndDate">
+
+                <button type="submit">Hitung Pendapatan</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Hasil Pendapatan</h2>
+            <p>
+                Total Pendapatan: 
+                <span th:text="${pendapatan}">0</span>
+            </p>
+        </section>
+
+        <section>
+            <!-- Tombol Kembali -->
+            <a href="/admin/laporan">
+                <button type="button">Kembali ke Laporan</button>
+            </a>
+        </section>
+    </main>
+</body>
+</html>

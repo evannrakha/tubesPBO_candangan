@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pencarian Pasien Berdasarkan Nama</title>
+</head>
+<body>
+    <h1>Pencarian Pasien Berdasarkan Nama</h1>
+
+    <!-- Form Input Nama -->
+    <form th:action="@{/admin/cari/namaPasien}" method="get">
+        <label for="nama">Masukkan Nama Pasien:</label>
+        <input type="text" id="nama" name="nama" placeholder="Nama Pasien" required>
+        <button type="submit">Cari</button>
+    </form>
+
+    <hr>
+
+    <!-- Pesan Jika Nama Tidak Ditemukan -->
+    <div th:if="${message != null}">
+        <p th:text="${message}" style="color: red;"></p>
+    </div>
+
+    <!-- Tabel Hasil Pencarian -->
+    <div th:if="${pasien != null}">
+        <h2>Hasil Pencarian:</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Gender</th>
+                    <th>Umur</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td th:text="${pasien.id}"></td>
+                    <td th:text="${pasien.nama}"></td>
+                    <td th:text="${pasien.gender}"></td>
+                    <td th:text="${pasien.umur}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${pasien != null}">
+        <p th:text="Pasien tidak ditemukan" style="color: red;"></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pencarian Pasien Berdasarkan Periode</title>
+</head>
+<body>
+    <h1>Pencarian Pasien Berdasarkan Periode</h1>
+    
+    <!-- Form Input Periode -->
+    <form th:action="@{/admin/cari/periodePasien}" method="get">
+        <label for="startDate">Tanggal Mulai:</label>
+        <input type="date" id="startDate" name="startDate">
+        
+        <label for="endDate">Tanggal Selesai:</label>
+        <input type="date" id="endDate" name="endDate">
+        
+        <button type="submit">Cari</button>
+    </form>
+    
+    <hr>
+    
+    <!-- Pesan atau Daftar Pasien -->
+    <div th:if="${message != null}">
+        <p th:text="${message}"></p>
+    </div>
+    
+    <table th:if="${listPasien != null}" border="1">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Alamat</th>
+                <th>Tanggal Lahir</th>
+                <th>No. Telepon</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pasien : ${listPasien}">
+                <td th:text="${pasien.nama}"></td>
+                <td th:text="${pasien.alamat}"></td>
+                <td th:text="${#dates.format(pasien.tanggalLahir, 'yyyy-MM-dd')}"></td>
+                <td th:text="${pasien.noTelepon}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
